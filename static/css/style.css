@@ -2,6 +2,10 @@
 /* Importação da fonte Righteous do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
+p, img, div {
+    user-select: none;
+  }
+
 html {
     font-size: 16px;
 
@@ -12,7 +16,9 @@ body {
     background-color: #E5E5E5;
     overflow-x: hidden;
 }
-
+.cursor-pointer{
+    cursor: pointer;
+}
 .roboto{
     font-family: 'Roboto';
     font-style: normal;
@@ -30,7 +36,7 @@ body {
     flex-direction: column;
     padding-left: 1em;
     padding-right: 1em;
-    padding-bottom: 80px;
+    padding-bottom: 8em;
 }
 
 .container-superior {
