@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh; /* Para centralizar o conteúdo verticalmente */
+  }
+  
+  .container-superior {
+    background-color:#CF2B2B;
+    height: 92px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.3125em;
+  }
+  
