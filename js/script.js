@@ -1,10 +1,25 @@
 const divs = document.querySelectorAll('.post');
 divs.forEach(div => {
-  div.addEventListener('click', () => {
-    const conteudo = div.textContent.trim();
-    console.log(conteudo);
+  div.addEventListener('click', (event) => {
+    selecionarPost(event);
   });
 });
+let contador = 0;
+function selecionarPost(event) {
+  // Remove a classe de seleção de todas as divs de posts
+  const posts = document.querySelectorAll('.post');
+  if (contador >= 3){
+    posts.forEach(post => post.classList.remove('post-selecionada'));
+    contador = 0;
+  }
+  // Adiciona a classe de seleção na div clicada
+  const divClicada = event.target.closest('.post');
+  divClicada.classList.add('post-selecionada');
+  contador += 1;
+  console.log(contador)
+  // Imprime o conteúdo da div selecionada no console
+  console.log(divClicada.innerText);
+}
 
 
 function adicionarPostagem() {
