@@ -77,7 +77,12 @@ function selecionarPost(event) {
   }
 }
 
-
+function enviarMensagem(){
+  const mensagem = "Olá, estou interessado em fazer um pedido";
+  const numero = "5516997350060";
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+  window.location.href = url;
+}
 
 
 
