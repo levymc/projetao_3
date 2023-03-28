@@ -1,25 +1,49 @@
+let contador = 0;
+let contador1 = 0;
+let contador2 = 0;
+let contador3 = 0;
 const divs = document.querySelectorAll('.post');
 divs.forEach(div => {
   div.addEventListener('click', (event) => {
     selecionarPost(event);
   });
 });
-let contador = 0;
+
 function selecionarPost(event) {
-  // Remove a classe de seleção de todas as divs de posts
-  const posts = document.querySelectorAll('.post');
-  if (contador >= 3){
-    posts.forEach(post => post.classList.remove('post-selecionada'));
-    contador = 0;
+  if (contador1 == 1 && contador2 == 1 && contador3 == 1){
+    alert("Grupo já selecionado!")
+    }else{
+    // Remove a classe de seleção de todas as divs de posts
+    const posts = document.querySelectorAll('.post');
+      if (contador === 3){
+        posts.forEach(post => post.classList.remove('post-selecionada'));
+        contador = 0;
+        contador1 = 0;
+        contador2 = 0;
+        contador3 = 0;
+        }
+      // Adiciona a classe de seleção na div clicada
+      const divClicada = event.target.closest('.post');
+      var divPai = divClicada.parentNode;
+      var classeDivPai = divPai.classList[0];
+      if (classeDivPai === 'postagens1' && contador1 < 1){
+      contador1 += 1;
+      contador += 1;
+      divClicada.classList.add('post-selecionada');
+      console.log(divClicada.innerText);
+      }else if(classeDivPai === 'postagens2' && contador2 < 1){
+      contador2 += 1;
+      contador += 1;
+      divClicada.classList.add('post-selecionada');
+      console.log(divClicada.innerText);
+      }else if(classeDivPai === 'postagens3' && contador3 < 1){
+      contador3 += 1;
+      contador += 1;
+      divClicada.classList.add('post-selecionada');
+      console.log(divClicada.innerText);
+      }
+    }
   }
-  // Adiciona a classe de seleção na div clicada
-  const divClicada = event.target.closest('.post');
-  divClicada.classList.add('post-selecionada');
-  contador += 1;
-  console.log(contador)
-  // Imprime o conteúdo da div selecionada no console
-  console.log(divClicada.innerText);
-}
 
 
 function adicionarPostagem() {
