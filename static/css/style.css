@@ -26,6 +26,7 @@ body {
 .conteudo{
     display: flex;
     flex-direction: column;
+    padding-bottom: 80px;
 }
 
 .container-superior {
@@ -75,15 +76,11 @@ body {
     height: auto;
     width: 100%;
     display:flex;
+    overflow-x: auto;
+    gap: 1em;
     justify-content: space-around;
 }
 
-.postagens1 {
-    display: flex;
-    gap: 1em;
-    overflow-x: auto;
-  }
-  
 .post {
     width: 176px;
     height: 216px;
