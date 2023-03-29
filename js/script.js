@@ -84,6 +84,22 @@ function enviarMensagem() {
   window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
 }
 
+function fecharModal(){
+  var modal = document.querySelector('.modal-container');
+  var modalFundo = document.querySelector('.modal-background');
+  var tituloModal = document.querySelector('.titulo-modal');
+  var conteudoModal = document.querySelector('.conteudo-modal');
+  var tableModal = document.querySelector('.table-modal');
+  var btnsModal = document.querySelector('.btns-modal');
+  document.body.style.overflow = "auto";
+  modal.remove();
+  modalFundo.remove();
+  tituloModal.remove();
+  conteudoModal.remove();
+  tableModal.remove();
+  btnsModal.remove();
+}
+
 function modal() {
     // cria a div modal-container
     var modalContainer = document.createElement("div");
@@ -99,20 +115,16 @@ function modal() {
     // modalContainer.style.justifyContent = "center";
     modalContainer.setAttribute('data-test', 'confirm-order-modal');
 
-    // cria a div titulo-modal
     var tituloModal = document.createElement("div");
     tituloModal.classList.add("titulo-modal");
     tituloModal.classList.add("roboto");
-    tituloModal.classList.add("titulo-modal");
     tituloModal.textContent = "Confirme seu pedido";
     modalContainer.appendChild(tituloModal);
     
-    // cria a div conteudo-modal
     var conteudoModal = document.createElement("div");
     conteudoModal.classList.add("roboto");
     conteudoModal.classList.add("conteudo-modal");
 
-    // cria a tabela
     var tabela = document.createElement("table");
     tabela.classList.add("roboto");
     tabela.classList.add('table-modal')
@@ -126,8 +138,6 @@ function modal() {
       }
       tabela.appendChild(linha);
     }
-
-    // adiciona o conteúdo nas células
     tabela.rows[0].cells[0].textContent = "Frango Yin Yang";
     tabela.rows[0].cells[1].textContent = "14,90";
     tabela.rows[1].cells[0].textContent = "Coquinha gelada";
@@ -138,15 +148,11 @@ function modal() {
     var total = parseFloat(tabela.rows[0].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[1].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[2].cells[1].textContent.replace(",", "."));
     tabela.rows[3].cells[1].textContent = total.toFixed(2);;
 
-
-    // adiciona a tabela na div conteudo-modal
     conteudoModal.appendChild(tabela);
 
     modalContainer.appendChild(conteudoModal);
-    var dish = document.createElement("dish");
-    dish.classList.add("dish-modal");
-    // dish.textContent = "Conteúdo do Modal";
-
+    // var dish = document.createElement("dish");
+    // dish.classList.add("dish-modal");
     
     // cria a div btns-modal
     var btnsModal = document.createElement("div");
@@ -160,6 +166,7 @@ function modal() {
     var btn1 = document.createElement("button");
     btn1.classList.add('roboto');
     btn1.style.marginBottom = '0.6875em';
+    btn1.style.cursor = 'pointer';
     btn1.style.width = '329px';
     btn1.style.height = '52px';
     btn1.style.borderRadius = '100px';
@@ -172,12 +179,13 @@ function modal() {
     btn1.setAttribute('data-test', 'confirm-order-btn');
     btn1.textContent = "Tudo certo, pode pedir!";
     btn1.onclick = function() {
-      // código para quando o botão 1 for clicado
+      enviarMensagem();
     }
     // cria o botão 2
     var btn2 = document.createElement("button");
     btn2.classList.add('roboto');
     btn2.textContent = "Cancelar";
+    btn2.style.cursor = 'pointer';
     btn2.style.width = '322px';
     btn2.style.height = '33px';
     btn2.style.color = '#FFFFFF';
@@ -189,7 +197,7 @@ function modal() {
     btn2.style.border = ' 2px solid #0000FF';
     btn2.setAttribute('data-test', 'cancel-order-btn');
     btn2.onclick = function() {
-      // código para quando o botão 2 for clicado
+      fecharModal();
     }
     btnsModal.appendChild(btn1);
     btnsModal.appendChild(btn2);
