@@ -98,8 +98,12 @@ function selecionarPost(event) {
   }
 }
 
-function enviarMensagem() {
-  var mensagem = "Olá, quero fazer um pedido!";
+function enviarMensagem(dish, drink, dessert, total) {
+  var mensagem = `Olá, gostaria de fazer o pedido:
+    - Prato: ${dish}
+    - Bebida: ${drink}
+    - Sobremesa: ${dessert}
+  Total: R$ ${total}`;
   var numero = "5516997350060";
   var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem); /* o encodeURI serve para converter a String no formato que o Whats entenda */ 
   window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
@@ -204,7 +208,7 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     btn1.setAttribute('data-test', 'confirm-order-btn');
     btn1.textContent = "Tudo certo, pode pedir!";
     btn1.onclick = function() {
-      enviarMensagem();
+      enviarMensagem(dish, drink, dessert, total);
     }
     // cria o botão 2
     var btn2 = document.createElement("button");
