@@ -109,8 +109,10 @@ body {
     border-radius: 9px;
 }
 .post-selecionada {
-    border: 1px solid rgb(73, 73, 223);
+    border: 1px solid #32B72F;
     box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 0px 5px #32B72F;
+    border-radius: 9px;
 }
   
 .img-post {
