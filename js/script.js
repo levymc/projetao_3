@@ -210,7 +210,7 @@ function modal(dish, drink, dessert) {
     btn2.style.fontSize = '1.25em';
     btn2.style.lineHeight = '23px';
     btn2.style.letterSpacing = '0.018em';
-    btn2.style.border = ' 2px solid #0000FF';
+    btn2.style.border = '0';
     btn2.setAttribute('data-test', 'cancel-order-btn');
     btn2.onclick = function() {
       fecharModal();
