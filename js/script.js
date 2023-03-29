@@ -109,15 +109,18 @@ function modal() {
     
     // cria a div conteudo-modal
     var conteudoModal = document.createElement("div");
+    conteudoModal.classList.add("roboto");
     conteudoModal.classList.add("conteudo-modal");
 
     // cria a tabela
     var tabela = document.createElement("table");
+    tabela.classList.add("roboto");
+    tabela.classList.add('table-modal')
 
     // adiciona as células na tabela
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
       var linha = document.createElement("tr");
-      for (var j = 0; j < 2; j++) {
+      for (var j = 0; j < 3; j++) {
         var celula = document.createElement("td");
         linha.appendChild(celula);
       }
@@ -125,12 +128,16 @@ function modal() {
     }
 
     // adiciona o conteúdo nas células
-    tabela.rows[0].cells[0].textContent = "Produto";
-    tabela.rows[0].cells[1].textContent = "Preço";
-    tabela.rows[1].cells[0].textContent = "Produto 1";
-    tabela.rows[1].cells[1].textContent = "R$ 10,00";
-    tabela.rows[2].cells[0].textContent = "Produto 2";
-    tabela.rows[2].cells[1].textContent = "R$ 15,00";
+    tabela.rows[0].cells[0].textContent = "Frango Yin Yang";
+    tabela.rows[0].cells[1].textContent = "14,90";
+    tabela.rows[1].cells[0].textContent = "Coquinha gelada";
+    tabela.rows[1].cells[1].textContent = "4,90";
+    tabela.rows[2].cells[0].textContent = "Pudim";
+    tabela.rows[2].cells[1].textContent = "7,90";
+    tabela.rows[3].cells[0].textContent = "TOTAL"; 
+    var total = parseFloat(tabela.rows[0].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[1].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[2].cells[1].textContent.replace(",", "."));
+    tabela.rows[3].cells[1].textContent = total.toFixed(2);;
+
 
     // adiciona a tabela na div conteudo-modal
     conteudoModal.appendChild(tabela);
