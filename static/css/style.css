@@ -20,7 +20,7 @@ body {
     cursor: pointer;
 }
 .roboto{
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
 }
 .container {
@@ -34,7 +34,7 @@ body {
 .conteudo{
     display: flex;
     flex-direction: column;
-    padding-left: 1em;
+    /* padding-left: 1em; */
     padding-right: 1em;
     padding-bottom: 8em;
 }
@@ -218,7 +218,20 @@ body {
     letter-spacing: 0.018em;
     color: #FFFFFF;
 }
-
+.titulo-modal{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: #FFFFFF;
+}
+.conteudo-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20.0625em;
+    height: auto;
+}
 @media (max-width: 515px) {
     .postagens1, .postagens2, .postagens3 {
       padding-left: 2em;

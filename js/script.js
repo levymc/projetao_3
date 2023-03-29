@@ -85,30 +85,123 @@ function enviarMensagem() {
 }
 
 function modal() {
-  // cria a div modal-container
-  var modalContainer = document.createElement("div");
-  modalContainer.classList.add("modal-container");
-  
-  // adiciona o conteúdo dentro da div modal-container
-  var modalContent = document.createElement("p");
-  modalContent.textContent = "Conteúdo do modal...";
-  modalContainer.appendChild(modalContent);
-  
-  // cria a div modal-background
-  var modalBackground = document.createElement("div");
-  modalBackground.classList.add("modal-background");
-  modalBackground.onclick = function() {
-    modalBackground.style.display = "none";
-    modalContainer.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
-  var container = document.querySelector(".container");
-  container.appendChild(modalBackground);
-  container.appendChild(modalContainer);
+    // cria a div modal-container
+    var modalContainer = document.createElement("div");
+    modalContainer.classList.add("modal-container");
+    modalContainer.style.boxShadow = "0px 0px 10px 1px rgba(0, 0, 0, 0.25)";
+    modalContainer.style.borderRadius = "9px";
+    modalContainer.style.backgroundColor = "#50D074";
+    modalContainer.style.width = "80.063%";
+    modalContainer.style.height = "22.0625em";
+    modalContainer.style.display = "flex";
+    modalContainer.style.flexDirection = "column";
+    modalContainer.style.alignItems = "center";
+    // modalContainer.style.justifyContent = "center";
+    modalContainer.setAttribute('data-test', 'confirm-order-modal');
 
-  // adiciona o estilo ao body para deixá-lo opaco
-  document.body.style.overflow = "hidden";
-}
+    // cria a div titulo-modal
+    var tituloModal = document.createElement("div");
+    tituloModal.classList.add("titulo-modal");
+    tituloModal.classList.add("roboto");
+    tituloModal.classList.add("titulo-modal");
+    tituloModal.textContent = "Confirme seu pedido";
+    modalContainer.appendChild(tituloModal);
+    
+    // cria a div conteudo-modal
+    var conteudoModal = document.createElement("div");
+    conteudoModal.classList.add("conteudo-modal");
+
+    // cria a tabela
+    var tabela = document.createElement("table");
+
+    // adiciona as células na tabela
+    for (var i = 0; i < 3; i++) {
+      var linha = document.createElement("tr");
+      for (var j = 0; j < 2; j++) {
+        var celula = document.createElement("td");
+        linha.appendChild(celula);
+      }
+      tabela.appendChild(linha);
+    }
+
+    // adiciona o conteúdo nas células
+    tabela.rows[0].cells[0].textContent = "Produto";
+    tabela.rows[0].cells[1].textContent = "Preço";
+    tabela.rows[1].cells[0].textContent = "Produto 1";
+    tabela.rows[1].cells[1].textContent = "R$ 10,00";
+    tabela.rows[2].cells[0].textContent = "Produto 2";
+    tabela.rows[2].cells[1].textContent = "R$ 15,00";
+
+    // adiciona a tabela na div conteudo-modal
+    conteudoModal.appendChild(tabela);
+
+    modalContainer.appendChild(conteudoModal);
+    var dish = document.createElement("dish");
+    dish.classList.add("dish-modal");
+    // dish.textContent = "Conteúdo do Modal";
+
+    
+    // cria a div btns-modal
+    var btnsModal = document.createElement("div");
+    btnsModal.classList.add("btns-modal");
+    btnsModal.style.display = "flex";
+    btnsModal.style.flexDirection = "column";
+    btnsModal.style.alignItems = "center";
+    btnsModal.style.justifyContent = "center";
+    modalContainer.appendChild(btnsModal);
+   // cria o botão 1
+    var btn1 = document.createElement("button");
+    btn1.classList.add('roboto');
+    btn1.style.marginBottom = '0.6875em';
+    btn1.style.width = '329px';
+    btn1.style.height = '52px';
+    btn1.style.borderRadius = '100px';
+    btn1.style.color = '#50D074';
+    btn1.style.backgroundColor = '#FFFFFF';
+    btn1.style.fontSize = '1.375em';
+    btn1.style.fontWeight = '700';
+    btn1.style.lineHeight = '26px';  
+    btn1.style.letterSpacing = '0.018em';
+    btn1.setAttribute('data-test', 'confirm-order-btn');
+    btn1.textContent = "Tudo certo, pode pedir!";
+    btn1.onclick = function() {
+      // código para quando o botão 1 for clicado
+    }
+    // cria o botão 2
+    var btn2 = document.createElement("button");
+    btn2.classList.add('roboto');
+    btn2.textContent = "Cancelar";
+    btn2.style.width = '322px';
+    btn2.style.height = '33px';
+    btn2.style.color = '#FFFFFF';
+    btn2.style.backgroundColor = '#50D074';
+    btn2.style.fontWeight = '700';
+    btn2.style.fontSize = '1.25em';
+    btn2.style.lineHeight = '23px';
+    btn2.style.letterSpacing = '0.018em';
+    btn2.style.border = ' 2px solid #0000FF';
+    btn2.setAttribute('data-test', 'cancel-order-btn');
+    btn2.onclick = function() {
+      // código para quando o botão 2 for clicado
+    }
+    btnsModal.appendChild(btn1);
+    btnsModal.appendChild(btn2);
+
+    // cria a div modal-background
+    var modalBackground = document.createElement("div");
+    modalBackground.classList.add("modal-background");
+    modalBackground.onclick = function() {
+      modalBackground.style.display = "none";
+      modalContainer.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+    var container = document.querySelector(".container");
+    container.appendChild(modalBackground);
+    container.appendChild(modalContainer);
+
+    // adiciona o estilo ao body para deixá-lo opaco
+    document.body.style.overflow = "hidden";
+  }
 
 
 
