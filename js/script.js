@@ -65,12 +65,15 @@ function selecionarPost(event) {
     if (classeDivPai == 'postagens1') {
       contador1 += 1;
       conteudo1 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+      conteudoPrice1 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     } else if (classeDivPai == 'postagens2') {
       contador2 += 1;
       conteudo2 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+      conteudoPrice2 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     } else if (classeDivPai == 'postagens3') {
       contador3 += 1;
       conteudo3 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+      conteudoPrice3 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     }
     contador += 1;
   }
@@ -78,15 +81,20 @@ function selecionarPost(event) {
   // Verifica se já foram selecionados 3 itens para ativar o botão
   if (contador == 3) {
     const tituloDish = conteudo1.toString();
+    const priceDish = parseFloat(conteudoPrice1.replace('R$', '').replace(',', '.'));
     const tituloDrink = conteudo2.toString();
+    const priceDrink = parseFloat(conteudoPrice2.replace('R$', '').replace(',', '.'));
     const tituloDessert = conteudo3.toString();
+    const priceDessert = parseFloat(conteudoPrice3.replace('R$', '').replace(',', '.'));
+
+    const total = priceDessert+priceDish+priceDrink;
 
     const orderBtn = document.querySelector('[data-test="order-btn"]');
     orderBtn.removeAttribute('disabled');
     orderBtn.style.backgroundColor = '#50D074';
     orderBtn.textContent = 'Fechar pedido';
     orderBtn.classList.add('cursor-pointer');
-    orderBtn.setAttribute('onclick',`modal('${tituloDish}','${tituloDrink}','${tituloDessert}')` )
+    orderBtn.setAttribute('onclick',`modal('${tituloDish}', '${priceDish}','${tituloDrink}', ${priceDrink},'${tituloDessert}','${priceDessert}', '${total}')` )
   }
 }
 
@@ -114,7 +122,7 @@ function fecharModal(){
   btnsModal.remove();
 }
 
-function modal(dish, drink, dessert) {
+function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total) {
     // cria a div modal-container
     var modalContainer = document.createElement("div");
     modalContainer.classList.add("modal-container");
@@ -153,22 +161,23 @@ function modal(dish, drink, dessert) {
       tabela.appendChild(linha);
     }
     tabela.rows[0].cells[0].textContent = dish;
-    tabela.rows[0].cells[1].textContent = "14,90";
+    tabela.rows[0].cells[1].textContent = dishPrice;
+
     tabela.rows[1].cells[0].textContent = drink;
-    tabela.rows[1].cells[1].textContent = "4,90";
-    tabela.rows[2].cells[0].textContent = dessert;
-    tabela.rows[2].cells[1].textContent = "7,90";
-    tabela.rows[3].cells[0].textContent = "TOTAL"; 
-    var total = parseFloat(tabela.rows[0].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[1].cells[1].textContent.replace(",", ".")) + parseFloat(tabela.rows[2].cells[1].textContent.replace(",", "."));
-    tabela.rows[3].cells[1].textContent = total.toFixed(2);;
+    tabela.rows[1].cells[1].textContent = drinkPrice;
+
+    tabela.rows[2].cells[0].textContent = dessert ;
+    tabela.rows[2].cells[1].textContent = dessertPrice;
+    
+    tabela.rows[3].cells[0].textContent = "TOTAL";
+    tabela.rows[3].cells[1].textContent = total || "";
     tabela.rows[3].cells[0].style.fontWeight = 'bold';
     tabela.rows[3].cells[1].style.fontWeight = 'bold';
+ 
 
     conteudoModal.appendChild(tabela);
 
     modalContainer.appendChild(conteudoModal);
-    // var dish = document.createElement("dish");
-    // dish.classList.add("dish-modal");
     
     // cria a div btns-modal
     var btnsModal = document.createElement("div");
