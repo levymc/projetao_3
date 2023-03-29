@@ -158,7 +158,7 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     // adiciona as células na tabela
     for (var i = 0; i < 4; i++) {
       var linha = document.createElement("tr");
-      for (var j = 0; j < 3; j++) {
+      for (var j = 0; j < 2; j++) {
         var celula = document.createElement("td");
         linha.appendChild(celula);
       }
@@ -174,7 +174,7 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     tabela.rows[2].cells[1].textContent = dessertPrice;
     
     tabela.rows[3].cells[0].textContent = "TOTAL";
-    tabela.rows[3].cells[1].textContent = total || "";
+    tabela.rows[3].cells[1].textContent = "R$ " + total || "";
     tabela.rows[3].cells[0].style.fontWeight = 'bold';
     tabela.rows[3].cells[1].style.fontWeight = 'bold';
  

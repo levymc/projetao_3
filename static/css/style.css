@@ -145,9 +145,8 @@ body {
     height: 39px;
 }
 .preco-prato{
+    margin-top: 0.3125em;
     margin-left: 0.875em;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
@@ -235,6 +234,8 @@ body {
     margin-bottom: 1.5em;
 }
 .table-modal{
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
     width: 90%;
     font-style: normal;
