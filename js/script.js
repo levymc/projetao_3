@@ -91,7 +91,8 @@ function fecharModal(){
   var conteudoModal = document.querySelector('.conteudo-modal');
   var tableModal = document.querySelector('.table-modal');
   var btnsModal = document.querySelector('.btns-modal');
-  document.body.style.overflow = "auto";
+  document.body.style.overflowX = "hidden";
+  document.body.style.overflowY = "auto";
   modal.remove();
   modalFundo.remove();
   tituloModal.remove();
