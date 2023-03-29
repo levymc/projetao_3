@@ -77,12 +77,39 @@ function selecionarPost(event) {
   }
 }
 
-function enviarMensagem(){
-  const mensagem = "Olá, estou interessado em fazer um pedido";
-  const numero = "5516997350060";
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-  window.location.href = url;
+function enviarMensagem() {
+  var mensagem = "Olá, quero fazer um pedido!";
+  var numero = "5516997350060";
+  var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem); /* o encodeURI serve para converter a String no formato que o Whats entenda */ 
+  window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
 }
+
+function modal() {
+  // cria a div modal-container
+  var modalContainer = document.createElement("div");
+  modalContainer.classList.add("modal-container");
+  
+  // adiciona o conteúdo dentro da div modal-container
+  var modalContent = document.createElement("p");
+  modalContent.textContent = "Conteúdo do modal...";
+  modalContainer.appendChild(modalContent);
+  
+  // cria a div modal-background
+  var modalBackground = document.createElement("div");
+  modalBackground.classList.add("modal-background");
+  modalBackground.onclick = function() {
+    modalBackground.style.display = "none";
+    modalContainer.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+  var container = document.querySelector(".container");
+  container.appendChild(modalBackground);
+  container.appendChild(modalContainer);
+
+  // adiciona o estilo ao body para deixá-lo opaco
+  document.body.style.overflow = "hidden";
+}
+
 
 
 
