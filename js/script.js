@@ -103,7 +103,7 @@ function enviarMensagem(dish, drink, dessert, total) {
     - Prato: ${dish}
     - Bebida: ${drink}
     - Sobremesa: ${dessert}
-  Total: R$ ${total}`;
+  Total: R$ ${Number(total).toFixed(2).replace('.', ',')}`;
   var numero = "5516997350060";
   var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem); /* o encodeURI serve para converter a String no formato que o Whats entenda */ 
   window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
@@ -165,16 +165,16 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
       tabela.appendChild(linha);
     }
     tabela.rows[0].cells[0].textContent = dish;
-    tabela.rows[0].cells[1].textContent = dishPrice;
+    tabela.rows[0].cells[1].textContent = Number(dishPrice).toFixed(2).replace('.', ',');
 
     tabela.rows[1].cells[0].textContent = drink;
-    tabela.rows[1].cells[1].textContent = drinkPrice;
+    tabela.rows[1].cells[1].textContent = Number(drinkPrice).toFixed(2).replace('.', ',');
 
     tabela.rows[2].cells[0].textContent = dessert ;
-    tabela.rows[2].cells[1].textContent = dessertPrice;
+    tabela.rows[2].cells[1].textContent = Number(dessertPrice).toFixed(2).replace('.', ',');
     
     tabela.rows[3].cells[0].textContent = "TOTAL";
-    tabela.rows[3].cells[1].textContent = "R$ " + total || "";
+    tabela.rows[3].cells[1].textContent = "R$ " + Number(total).toFixed(2).replace('.', ',');
     tabela.rows[3].cells[0].style.fontWeight = 'bold';
     tabela.rows[3].cells[1].style.fontWeight = 'bold';
  
