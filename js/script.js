@@ -15,73 +15,53 @@ divs.forEach(div => {  // Aqui é para qualquer div que tenha a classe .post
   });
 });
 
-function selecionarPost(event) { // Lógica para seleção das divs .post
-  // Remove a classe de seleção de todas as divs de posts
-  const posts = document.querySelectorAll('.post');
-  if (contador == 3) {
-    posts.forEach(post => post.classList.remove('post-selecionada'));
-    contador = 0;
-    contador1 = 0;
-    contador2 = 0;
-    contador3 = 0;
-  }
-
-  // Adiciona a classe de seleção na div clicada
+function selecionarPost(event) {
   const divClicada = event.target.closest('.post');
   const divPai = divClicada.parentNode;
   const classeDivPai = divPai.classList[0];
   let itemJaSelecionado = false;
-  
 
-  // Verifica se já há algum item selecionado na mesma categoria da div clicada
-  if (classeDivPai == 'postagens1') {
-    if (contador1 > 0) {
-      itemJaSelecionado = true;
-      const postagens1 = document.querySelectorAll('.postagens1 .post-selecionada');
-      postagens1.forEach(post => post.classList.remove('post-selecionada'));
-      contador -= contador1;
-      contador1 = 0;
-    }
-  } else if (classeDivPai == 'postagens2') {
-    if (contador2 > 0) {
-      itemJaSelecionado = true;
-      const postagens2 = document.querySelectorAll('.postagens2 .post-selecionada');
-      postagens2.forEach(post => post.classList.remove('post-selecionada'));
-      contador -= contador2;
-      contador2 = 0;
-    }
-  } else if (classeDivPai == 'postagens3') {
-    if (contador3 > 0) {
-      itemJaSelecionado = true;
-      const postagens3 = document.querySelectorAll('.postagens3 .post-selecionada');
-      postagens3.forEach(post => post.classList.remove('post-selecionada'));
-      contador -= contador3;
-      contador3 = 0;
-    }
+  
+  const selecionadosCategoria = document.querySelectorAll(`.${classeDivPai} .post-selecionada`);
+  if (selecionadosCategoria.length > 0) { // ve se já tem um item selecionado na mesma div pai clicada
+    selecionadosCategoria.forEach((post) => {
+      if (post !== divClicada) {
+        post.classList.remove('post-selecionada');
+        if (classeDivPai === 'postagens1') {
+          contador1--;
+        } else if (classeDivPai === 'postagens2') {
+          contador2--;
+        } else if (classeDivPai === 'postagens3') {
+          contador3--;
+        }
+        contador--;
+      } else {
+        itemJaSelecionado = true;
+      }
+    });
   }
 
-  // Adiciona a classe de seleção na div clicada, caso não haja item já selecionado na mesma categoria
   if (!itemJaSelecionado) {
     divClicada.classList.add('post-selecionada');
     console.log(divClicada.innerText);
     if (classeDivPai == 'postagens1') {
-      contador1 += 1;
+      contador1++;
       conteudo1 = divClicada.querySelector('.titulo-prato p').textContent.trim();
       conteudoPrice1 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     } else if (classeDivPai == 'postagens2') {
-      contador2 += 1;
+      contador2++;
       conteudo2 = divClicada.querySelector('.titulo-prato p').textContent.trim();
       conteudoPrice2 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     } else if (classeDivPai == 'postagens3') {
-      contador3 += 1;
+      contador3++;
       conteudo3 = divClicada.querySelector('.titulo-prato p').textContent.trim();
       conteudoPrice3 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
     }
-    contador += 1;
+    contador++;
   }
 
-  // Verifica se já foram selecionados 3 itens para ativar o botão
-  if (contador == 3) {
+
+  if (contador === 3) {   // Verifica se já foram selecionados 3 itens para ativar o botão
     const tituloDish = conteudo1.toString();
     const priceDish = parseFloat(conteudoPrice1.replace('R$', '').replace(',', '.'));
     const tituloDrink = conteudo2.toString();
@@ -89,14 +69,17 @@ function selecionarPost(event) { // Lógica para seleção das divs .post
     const tituloDessert = conteudo3.toString();
     const priceDessert = parseFloat(conteudoPrice3.replace('R$', '').replace(',', '.'));
 
-    const total = priceDessert+priceDish+priceDrink;
+    const total = priceDessert + priceDish + priceDrink;
 
     const orderBtn = document.querySelector('[data-test="order-btn"]');
     orderBtn.removeAttribute('disabled');
     orderBtn.style.backgroundColor = '#50D074';
     orderBtn.textContent = 'Fechar pedido';
     orderBtn.classList.add('cursor-pointer');
-    orderBtn.setAttribute('onclick',`modal('${tituloDish}', '${priceDish}','${tituloDrink}', ${priceDrink},'${tituloDessert}','${priceDessert}', '${total}')` )
+    orderBtn.setAttribute(
+      'onclick',
+      `modal('${tituloDish}', '${priceDish}','${tituloDrink}', ${priceDrink},'${tituloDessert}','${priceDessert}', '${total}')`
+    );
   }
 }
 
