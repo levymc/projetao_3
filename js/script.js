@@ -1,3 +1,4 @@
+// Declaração de variáveis a serem utilzadas nas funções abaixo
 let contador = 0;
 let contador1 = 0;
 let contador2 = 0;
@@ -6,13 +7,15 @@ let conteudo1 = String();
 let conteudo2 = String();
 let conteudo3 = String();
 const divs = document.querySelectorAll('.post');
-divs.forEach(div => {
+
+
+divs.forEach(div => {  // Aqui é para qualquer div que tenha a classe .post
   div.addEventListener('click', (event) => {
     selecionarPost(event);
   });
 });
 
-function selecionarPost(event) {
+function selecionarPost(event) { // Lógica para seleção das divs .post
   // Remove a classe de seleção de todas as divs de posts
   const posts = document.querySelectorAll('.post');
   if (contador == 3) {
@@ -97,7 +100,7 @@ function selecionarPost(event) {
   }
 }
 
-function enviarMensagem(dish, drink, dessert, total) {
+function enviarMensagem(dish, drink, dessert, total) { // Envio das msgs via Whats, com base em parâmetros da seleção
   var mensagem = `Olá, gostaria de fazer o pedido:
     - Prato: ${dish}
     - Bebida: ${drink}
@@ -108,8 +111,7 @@ function enviarMensagem(dish, drink, dessert, total) {
   window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
 }
 
-
-function fecharModal(){
+function fecharModal(){ // Lógica para fechar o modal no caso de clicar em Cancelar
   var modal = document.querySelector('.modal-container');
   var modalFundo = document.querySelector('.modal-background');
   var tituloModal = document.querySelector('.titulo-modal');
@@ -183,16 +185,15 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
 
     modalContainer.appendChild(conteudoModal);
     
-    // cria a div btns-modal
-    var btnsModal = document.createElement("div");
+    var btnsModal = document.createElement("div"); // div container dos botoes
     btnsModal.classList.add("btns-modal");
     btnsModal.style.display = "flex";
     btnsModal.style.flexDirection = "column";
     btnsModal.style.alignItems = "center";
     btnsModal.style.justifyContent = "center";
     modalContainer.appendChild(btnsModal);
-   // cria o botão 1
-    var btn1 = document.createElement("button");
+    
+    var btn1 = document.createElement("button"); // botão de FInalizar
     btn1.classList.add('roboto');
     btn1.style.marginBottom = '0.6875em';
     btn1.style.cursor = 'pointer';
@@ -210,8 +211,8 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     btn1.onclick = function() {
       enviarMensagem(dish, drink, dessert, total);
     }
-    // cria o botão 2
-    var btn2 = document.createElement("button");
+
+    var btn2 = document.createElement("button"); // botão de cancelar
     btn2.classList.add('roboto');
     btn2.textContent = "Cancelar";
     btn2.style.cursor = 'pointer';
@@ -231,26 +232,20 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     btnsModal.appendChild(btn1);
     btnsModal.appendChild(btn2);
 
-    // cria a div modal-background
     var modalBackground = document.createElement("div");
     modalBackground.classList.add("modal-background");
-    modalBackground.onclick = function() {
+    modalBackground.onclick = function() { // Lógica para fechar o modal no caso de clicar fora dele
       modalBackground.style.display = "none";
       modalContainer.style.display = "none";
       document.body.style.overflow = "auto";
     }
     var container = document.querySelector(".container");
-    container.appendChild(modalBackground);
+    container.appendChild(modalBackground); 
     container.appendChild(modalContainer);
-
-    // adiciona o estilo ao body para deixá-lo opaco
     document.body.style.overflow = "hidden";
-  }
+}
 
-
-
-
-function adicionarPostagem() {
+function adicionarPostagem() { // Brincando com adicionar postagens com imagens aleatórias, nada do projeto em si
   const novaPostagem = document.createElement('div');
   novaPostagem.classList.add('post');
 
