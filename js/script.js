@@ -228,17 +228,73 @@ function modal(dish, dishPrice, drink, drinkPrice, dessert, dessertPrice, total)
     document.body.style.overflow = "hidden";
 }
 
-function adicionarPostagem() { // Brincando com adicionar postagens com imagens aleatórias, nada do projeto em si
+async function adicionarPostagem() {
   const novaPostagem = document.createElement('div');
   novaPostagem.classList.add('post');
+  novaPostagem.setAttribute('data-test', 'dish');
+  novaPostagem.setAttribute('id', `dish${contador}`);
 
-  const listaImagens = ['clara.png', 'monique1.png', 'ruivo.png', 'frogao.png', 'thais.png'];
+  const response = await fetch('./static/img/');
+  const imagens = await response.text();
+  const listaImagens = ['clara.png', 'dish1.png', 'baconzitos.png', 'dish2.png', 'thais.png'];
+
   const imagemAleatoria = listaImagens[Math.floor(Math.random() * listaImagens.length)];
+  const imgPost = document.createElement('div');
+  imgPost.classList.add('img-post', 'roboto');
+  const img = document.createElement('img');
+  img.setAttribute('src', `./static/img/${imagemAleatoria}`);
+  imgPost.appendChild(img);
+  novaPostagem.appendChild(imgPost);
 
-  novaPostagem.style.backgroundImage = `url(./static/img/${imagemAleatoria})`;
+  const tituloPrato = document.createElement('div');
+  tituloPrato.setAttribute('data-test', 'item-name');
+  tituloPrato.classList.add('titulo-prato', 'roboto');
+  const nomePrato = document.createElement('p');
+  nomePrato.textContent = 'Baconzitos';
+  tituloPrato.appendChild(nomePrato);
+  novaPostagem.appendChild(tituloPrato);
+
+  const descricaoPrato = document.createElement('div');
+  descricaoPrato.classList.add('descricao-prato', 'roboto');
+  const descricao = document.createElement('p');
+  descricao.textContent = 'Nem um pouco de salada...';
+  descricaoPrato.appendChild(descricao);
+  novaPostagem.appendChild(descricaoPrato);
+
+  const precoPrato = document.createElement('div');
+  precoPrato.setAttribute('data-test', 'item-price');
+  precoPrato.classList.add('preco-prato', 'roboto');
+  const preco = document.createElement('p');
+  preco.textContent = 'R$ 11,00';
+  precoPrato.appendChild(preco);
+  novaPostagem.appendChild(precoPrato);
 
   const row1 = document.querySelector('.postagens1');
   row1.appendChild(novaPostagem);
+  contador++;
 }
 
 
+
+
+/// WTFFFFFFFFFFFFFFFFF ESTUDAR ESSA PORA DPS
+
+// const sqlite3 = require('sqlite3').verbose();
+
+// // Abrir conexão com o banco de dados
+// const db = new sqlite3.Database('database.db');
+
+// // Inserir uma nova postagem na tabela
+// const imagem = 'imagem.png';
+// const titulo = 'Título da Postagem';
+// const descricao = 'Descrição da Postagem';
+
+// db.run(`INSERT INTO postagens (imagem, titulo, descricao) VALUES (?, ?, ?)`, [imagem, titulo, descricao], function(err) {
+//   if (err) {
+//     return console.log(err.message);
+//   }
+//   console.log(`Nova postagem criada com id ${this.lastID}`);
+// });
+
+// // Fechar conexão com o banco de dados
+// db.close();
