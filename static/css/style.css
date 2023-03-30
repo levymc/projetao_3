@@ -92,7 +92,7 @@ body {
     height: auto;
     width: 100%;
     display:flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 1em;
     justify-content: flex-start;
 }
