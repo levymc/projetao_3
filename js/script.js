@@ -56,7 +56,6 @@ function selecionarPost(event) {
       contador3 = 0;
     }
   }
-  
 
   // Adiciona a classe de seleção na div clicada, caso não haja item já selecionado na mesma categoria
   if (!itemJaSelecionado) {
@@ -108,6 +107,7 @@ function enviarMensagem(dish, drink, dessert, total) {
   var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem); /* o encodeURI serve para converter a String no formato que o Whats entenda */ 
   window.open(url, '_blank'); /* O blank aqui serve para abrir a url em outra aba */
 }
+
 
 function fecharModal(){
   var modal = document.querySelector('.modal-container');
