@@ -22,10 +22,8 @@ function selecionarPost(event) {
   const divPai = divClicada.parentNode;
   const classeDivPai = divPai.classList[0];
   let itemJaSelecionado = false;
-
-  
   const selecionadosCategoria = document.querySelectorAll(`.${classeDivPai} .post-selecionada`);
-  if (selecionadosCategoria.length > 0) { // ve se já tem um item selecionado na mesma div pai clicada
+  if (selecionadosCategoria.length > 0) {
     selecionadosCategoria.forEach((post) => {
       if (post !== divClicada) {
         post.classList.remove('post-selecionada');
@@ -42,27 +40,36 @@ function selecionarPost(event) {
       }
     });
   }
-
   if (!itemJaSelecionado) {
-    divClicada.classList.add('post-selecionada');
-    console.log(divClicada.innerText);
-    if (classeDivPai == 'postagens1') {
-      contador1++;
-      conteudo1 = divClicada.querySelector('.titulo-prato p').textContent.trim();
-      conteudoPrice1 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
-    } else if (classeDivPai == 'postagens2') {
-      contador2++;
-      conteudo2 = divClicada.querySelector('.titulo-prato p').textContent.trim();
-      conteudoPrice2 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
-    } else if (classeDivPai == 'postagens3') {
-      contador3++;
-      conteudo3 = divClicada.querySelector('.titulo-prato p').textContent.trim();
-      conteudoPrice3 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
+    if (!divClicada.classList.contains('post-selecionada')) { // verifica se já está selecionada
+      divClicada.classList.add('post-selecionada');
+      console.log(divClicada.innerText);
+      if (classeDivPai == 'postagens1') {
+        contador1++;
+        conteudo1 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+        conteudoPrice1 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
+      } else if (classeDivPai == 'postagens2') {
+        contador2++;
+        conteudo2 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+        conteudoPrice2 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
+      } else if (classeDivPai == 'postagens3') {
+        contador3++;
+        conteudo3 = divClicada.querySelector('.titulo-prato p').textContent.trim();
+        conteudoPrice3 = divClicada.querySelector('[data-test="item-price"]').textContent.trim();
+      }
+      contador++;
+    } else { // já está selecionada, então remove a seleção
+      divClicada.classList.remove('post-selecionada');
+      if (classeDivPai === 'postagens1') {
+        contador1--;
+      } else if (classeDivPai === 'postagens2') {
+        contador2--;
+      } else if (classeDivPai === 'postagens3') {
+        contador3--;
+      }
+      contador--;
     }
-    contador++;
   }
-
-
   if (contador === 3) {   // Verifica se já foram selecionados 3 itens para ativar o botão
     const tituloDish = conteudo1.toString();
     const priceDish = parseFloat(conteudoPrice1.replace('R$', '').replace(',', '.'));
