@@ -9,6 +9,8 @@ let conteudo3 = String();
 const divs = document.querySelectorAll('.post');
 
 
+// Testar o que o pink falou depois, rever a aula do dia 30.03 quinta
+
 divs.forEach(div => {  // Aqui é para qualquer div que tenha a classe .post
   div.addEventListener('click', (event) => {
     selecionarPost(event);
